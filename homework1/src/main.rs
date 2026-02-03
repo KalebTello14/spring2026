@@ -1,11 +1,9 @@
 //Assignment 1
 
 const FREEZING_POINT_F: f64 = 32.0;
-// °C = (°F-32)/1.8
 fn fahrenheit_to_celsius(f: f64) -> f64{
     (f - FREEZING_POINT_F) * 5.0 / 9.0
 }
-//°F = (°C × 1.8) + 32.
 fn celsius_to_fahrenheit(c: f64) -> f64{ 
     (c * 9.0 / 5.0) + FREEZING_POINT_F
 }
@@ -24,9 +22,6 @@ fn main() {
 }
 
 
-
-
-
 //Assignment 2
 
 
@@ -37,7 +32,6 @@ fn is_even(n: i32) -> bool {
 fn main() {
     let numbers: [i32; 10] = [3, 8, 15, 22, 7, 30, 11, 4, 9, 18];
 
-    // --- For loop: Even/Odd and FizzBuzz logic ---
     for num in numbers {
         if num % 3 == 0 && num % 5 == 0 {
             println!("{}: FizzBuzz", num);
@@ -52,7 +46,6 @@ fn main() {
         }
     }
 
-    // --- While loop: Sum of all numbers ---
     let mut index = 0;
     let mut sum = 0;
 
@@ -63,7 +56,6 @@ fn main() {
 
     println!("Sum of numbers: {}", sum);
 
-    // --- loop: Find largest number ---
     let mut largest = numbers[0];
     let mut i = 0;
 
@@ -85,6 +77,7 @@ fn main() {
 
 //Assignment 3
 
+
 fn check_guess(guess: i32, secret: i32) -> i32 {
     if guess == secret {
         0
@@ -100,7 +93,7 @@ fn main() {
     let mut guess_count = 0;
 
     loop {
-        let guess = guess_count + 3; // Simulated guesses: 3, 4, 5, 6, 7...
+        let guess = guess_count + 3;
         guess_count += 1;
 
         let result = check_guess(guess, secret_number);
