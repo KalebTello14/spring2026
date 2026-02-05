@@ -1,4 +1,4 @@
-//Assignment 1
+//Assignment 1 - create a function for each function
 
 const FREEZING_POINT_F: f64 = 32.0;
 fn fahrenheit_to_celsius(f: f64) -> f64{
