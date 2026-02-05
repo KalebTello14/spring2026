@@ -90,22 +90,24 @@ fn check_guess(guess: i32, secret: i32) -> i32 {
 
 fn main() {
     let secret_number = 7;
+    let mut guess_value = 1;
     let mut guess_count = 0;
 
     loop {
-        let guess = guess_count + 3;
         guess_count += 1;
 
-        let result = check_guess(guess, secret_number);
+        let result = check_guess(guess_value, secret_number);
 
         if result == 0 {
-            println!("Guess {}: Correct!", guess);
+            println!("Guess {}: {} is Correct!", guess_count, guess_value);
             break;
         } else if result == 1 {
-            println!("Guess {}: Too high!", guess);
+            println!("Guess {}: Too high!", guess_count);
         } else {
-            println!("Guess {}: Too low!", guess);
+            println!("Guess {}: Too low!", guess_count);
         }
+
+        guess_value += 1;
     }
 
     println!("It took {} guesses to find the secret number.", guess_count);
