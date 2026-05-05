@@ -9,19 +9,38 @@ content = []
 content.append(Paragraph("Experiment Comparison", styles["Heading1"]))
 content.append(Spacer(1, 12))
 
-text = """
-Two scheduling strategies were tested: FIFO and Optimized. Both used 1000 tasks with 70/30 IO to CPU distribution and 200ms task duration.
+content.append(Paragraph(
+    "Two scheduling strategies were tested: FIFO and Optimized. Both used 1000 tasks with 70/30 IO to CPU distribution and 200ms task duration.",
+    styles["BodyText"]
+))
+content.append(Spacer(1, 10))
 
-FIFO processed tasks in arrival order. This caused CPU inefficiency when large CPU tasks blocked smaller IO tasks.
+content.append(Paragraph(
+    "FIFO processed tasks in arrival order. This caused CPU inefficiency when large CPU tasks blocked smaller IO tasks.",
+    styles["BodyText"]
+))
+content.append(Spacer(1, 10))
 
-Optimized scheduling prioritized IO tasks when CPU usage was high and CPU tasks when usage was low.
+content.append(Paragraph(
+    "Optimized scheduling prioritized IO tasks when CPU usage was high and CPU tasks when usage was low.",
+    styles["BodyText"]
+))
+content.append(Spacer(1, 10))
 
-FIFO results: CPU 89.65%, Workers 5.07, Runtime 39430ms.
-Optimized results: CPU 96.45%, Workers 5.46, Runtime 36650ms.
+content.append(Paragraph(
+    "FIFO results: CPU 89.65%, Workers 5.07, Runtime 39430ms.",
+    styles["BodyText"]
+))
 
-Optimized scheduling improved CPU usage and reduced total runtime.
-"""
+content.append(Paragraph(
+    "Optimized results: CPU 96.45%, Workers 5.46, Runtime 36650ms.",
+    styles["BodyText"]
+))
+content.append(Spacer(1, 10))
 
-content.append(Paragraph(text, styles["BodyText"]))
+content.append(Paragraph(
+    "Optimized scheduling improved CPU usage and reduced total runtime.",
+    styles["BodyText"]
+))
 
 doc.build(content)
