@@ -1,0 +1,4 @@
+=== Fifo Scheduler Results ===
+Average CPU Usage: 89.65%
+Average Worker Usage: 5.07
+Total Runtime: 39430ms
