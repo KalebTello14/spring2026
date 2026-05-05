@@ -23,19 +23,19 @@ cargo build
 
 ## Run Instructions
 
-Run FIFO scheduler:
+Run FIFO scheduler (This will run in the terminal):
 
 ```bash
 cargo run -- fifo
 ```
 
-Run optimized scheduler:
+Run optimized scheduler (This will run in the terminal):
 
 ```bash
 cargo run -- optimized
 ```
 
-To generate clean output files for submission:
+To generate clean output files for submission (This will save in the txt files.):
 
 ```bash
 cargo run --release --quiet -- fifo > fifo_output.txt
