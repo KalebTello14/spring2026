@@ -1,33 +1,27 @@
-Experiment Comparison
+from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer
+from reportlab.lib.styles import getSampleStyleSheet
 
-Two scheduling strategies were tested in this project: a baseline FIFO scheduler and an optimized scheduler. Both were evaluated using the same workload of 1000 tasks generated at 20ms intervals with a 70/30 IO-to-CPU distribution. Each task required 200ms of simulated execution time, and the dispatcher enforced both worker availability (maximum of 8 workers) and a strict CPU usage cap of 100%.
+doc = SimpleDocTemplate("design_report.pdf")
+styles = getSampleStyleSheet()
 
-FIFO Scheduler Behavior
+content = []
 
-The FIFO scheduler processed tasks strictly in arrival order. While this approach was simple and predictable, it was less efficient under mixed workloads. CPU-intensive tasks near the front of the queue often delayed smaller IO tasks, even when those IO tasks could have fit within the remaining CPU budget. As a result, FIFO frequently left usable CPU capacity idle and reduced effective worker utilization.
+content.append(Paragraph("Experiment Comparison", styles["Heading1"]))
+content.append(Spacer(1, 12))
 
-Optimized Scheduler Behavior
+text = """
+Two scheduling strategies were tested: FIFO and Optimized. Both used 1000 tasks with 70/30 IO to CPU distribution and 200ms task duration.
 
-The optimized scheduler improved this behavior by making scheduling decisions based on current CPU load. When CPU utilization was already high, the scheduler prioritized IO tasks because they required only 10% CPU and could more easily fit into the remaining capacity. When CPU usage was lower, the scheduler preferred CPU-heavy tasks to increase utilization. This allowed the optimized scheduler to pack tasks more efficiently and reduce wasted CPU headroom.
+FIFO processed tasks in arrival order. This caused CPU inefficiency when large CPU tasks blocked smaller IO tasks.
 
-Experimental Results
+Optimized scheduling prioritized IO tasks when CPU usage was high and CPU tasks when usage was low.
 
-FIFO results:
+FIFO results: CPU 89.65%, Workers 5.07, Runtime 39430ms.
+Optimized results: CPU 96.45%, Workers 5.46, Runtime 36650ms.
 
-Average CPU Usage: 89.65%
-Average Worker Usage: 5.07
-Total Runtime: 39430ms
+Optimized scheduling improved CPU usage and reduced total runtime.
+"""
 
-Optimized results:
+content.append(Paragraph(text, styles["BodyText"]))
 
-Average CPU Usage: 96.45%
-Average Worker Usage: 5.46
-Total Runtime: 36650ms
-
-Comparison
-
-The optimized scheduler outperformed FIFO in all measured categories. CPU utilization increased from 89.65% to 96.45%, showing improved resource usage. Worker utilization increased from 5.07 to 5.46, indicating higher concurrency efficiency. Total runtime decreased from 39430ms to 36650ms, reducing execution time by 2780ms (about 7.1%).
-
-Conclusion
-
-FIFO is a valid baseline scheduling policy, but it performs less efficiently under mixed-resource workloads because it does not account for task cost. The optimized scheduler improves throughput and resource utilization by making cost-aware scheduling decisions. This demonstrates that even small changes in scheduling policy can significantly improve concurrent system performance.
+doc.build(content)
