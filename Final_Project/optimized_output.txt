@@ -1,4 +1,16 @@
-=== Optimized Scheduler Results ===
-Average CPU Usage: 96.45%
-Average Worker Usage: 5.46
-Total Runtime: 36650ms
+=== Optimized simulation ===
+1000 tasks, 70% IO / 30% CPU, 8 workers, cap 100%
+
+-- results --
+total runtime         : 36650ms
+makespan              : 36650ms
+tasks completed       : 1000 (IO=693, CPU=307)
+avg wait time         : 9471.28ms
+avg wait (IO Only)    : 11178.79ms
+avg wait (CPU Only)   : 5616.87ms
+avg turnaround time   : 9671.28ms
+max wait time         : 17240ms (task #685)
+avg CPU usage         : 96.45%
+avg workers active    : 5.46
+monitor samples       : 3665
+monitor csv           : optimized_monitor.csv
